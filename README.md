@@ -1,2 +1,45 @@
 # Model-Building-in-Mathematical-Programming
 Model Building in Mathematical Programming Fifth Edition
+
+
+
+### 目录
+
+- [x] Supply Network Design
+  - 书中第19题、20题
+  - 代码参考[gurobi官网](https://www.gurobi.com/resource/supply-network-design-i-and-ii/)
+  - 一些分析还没做完
+- [ ] Efficiency Analysis
+  - 书中第22题
+
+- [ ] Milk Collection Problem
+  - 书中第23题
+
+- [ ] Lost baggage distribution
+  - 书中第27题
+- [ ] Decentralisation
+  - 书中第10题
+
+- [ ] Market sharing
+  - 书中第13题
+
+- [x] Car rental
+  - 书中第25题、26题
+  - 写的代码结果跟书上不太一致，后面继续修改
+- [x] Three-dimensional noughts and crosses
+  - 书中第17题
+  - 已完成
+
+
+
+gurobi扩展的：
+
+	1. Customer Assignment Problem
+ 	2. Technician Routing and Scheduling Problem
+
+
+
+不做的：
+
+	1. 第18个题：优化约束-----把一个约束变成更紧凑的约束
+	2. 
