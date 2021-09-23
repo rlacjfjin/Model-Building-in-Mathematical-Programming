@@ -1,5 +1,5 @@
 class ManpowerPlanning:
-    def __init__(self,data):
+    def __init__(self, data):
         self.data = data
         self.model = None
         self.solution = None
