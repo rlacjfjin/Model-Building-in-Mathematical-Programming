@@ -9,20 +9,16 @@ Model Building in Mathematical Programming Fifth Edition
   - 书中第19题、20题
   - 代码参考[gurobi官网](https://www.gurobi.com/resource/supply-network-design-i-and-ii/)
   - 一些分析还没做完
-- [ ] Efficiency Analysis
+- [x] [Efficiency Analysis](Efficiency Analysis.md)
   - 书中第22题
-
-- [ ] Milk Collection Problem
+- [x] [Milk Collection Problem](Milk Collection Problem.md)
   - 书中第23题
-
-- [ ] Lost baggage distribution
+- [x] [Lost baggage distribution](Lost baggage distribution.md)
   - 书中第27题
 - [ ] Decentralisation
   - 书中第10题
-
 - [ ] Market sharing
   - 书中第13题
-
 - [x] Car rental
   - 书中第25题、26题
   - 写的代码结果跟书上不太一致，后面继续修改
@@ -35,7 +31,7 @@ Model Building in Mathematical Programming Fifth Edition
 gurobi扩展的：
 
 	1. Customer Assignment Problem
- 	2. Technician Routing and Scheduling Problem
+	2. Technician Routing and Scheduling Problem
 
 
 

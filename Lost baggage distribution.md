@@ -9,10 +9,12 @@
 给出一个方案，包括：
 
 	1. 使用最少的车辆
- 	2. 每辆货车应该交付哪些货物
- 	3. 交付的顺序
+	2. 每辆货车应该交付哪些货物
+	3. 交付的顺序
 
 货车没有容量限制；
+
+![image-20210924153209113](image\lost_baggage_distribution.jpg)
 
 #### 数学模型
 
@@ -47,7 +49,6 @@
    \end{equation}
    $$
    
-
 2. **Travel time**
    $$
    \begin{equation}
@@ -62,7 +63,6 @@
    \end{equation}
    $$
    
-
 4. **Depot**
    $$
    \begin{equation}
@@ -85,7 +85,6 @@ $$
    \end{equation}
    $$
    
-
 7. **Breaking symmetry**
    $$
    \begin{equation}
@@ -93,7 +92,6 @@ $$
    \end{equation}
    $$
    
-
 8. **Subtour elimination**
    $$
    \begin{equation}
@@ -111,4 +109,6 @@ $$
 $$
 
 #### 参考代码
+
+ [lost_baggage_distribution.py](code\lost_baggage_distribution.py) 
 

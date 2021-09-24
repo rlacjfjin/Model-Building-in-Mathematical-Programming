@@ -19,6 +19,10 @@
 
 <img src="D:\github\Model-Building-in-Mathematical-Programming\image\milk_collection.png" alt="image-20210827161126821" style="zoom:67%;" />
 
+
+
+![image-20210924153519326](image\milk_collection_prob.jpg)
+
 #### 数学模型
 
 ##### 定义集合
@@ -57,7 +61,6 @@
    \end{equation}
    $$
    
-
 2. **Entering and leaving an every day farm**
    $$
    \begin{equation}
@@ -74,7 +77,6 @@
    \end{equation}
    $$
    
-
 4. **Tanker capacity**
    $$
    \begin{equation}
@@ -83,7 +85,6 @@
    \end{equation}
    $$
    
-
 5. **Farms visited**
    $$
    \begin{equation}
@@ -92,7 +93,6 @@
    \end{equation}
    $$
    
-
 6. **Subtour elimination**
    $$
    \begin{equation}
@@ -111,4 +111,8 @@ $$
 \end{equation}
 $$
 
+
+
 #### 参考代码
+
+ [milk_collection.py](code\milk_collection.py) 

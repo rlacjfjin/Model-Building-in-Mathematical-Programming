@@ -241,7 +241,6 @@ class NewSolEvent(Eventhdlr):
         assert event.getType() == SCIP_EVENTTYPE.BESTSOLFOUND
         # get best sol
         sol = self.model.getBestSol()
-
         # get vars and position of vertices
         x = self.data['vars']
         xy = self.data['xy']
