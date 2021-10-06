@@ -62,13 +62,160 @@ A food is manufactured by reﬁning raw oils and blending them together.
 
 #### 解决方案
 
-### Sets and Indices
+##### 定义集合
 
-t∈Months={Jan,Feb,Mar,Apr,May,Jun}t∈Months={Jan,Feb,Mar,Apr,May,Jun}: Set of months.
+| 集合                                          | 含义         |
+| --------------------------------------------- | :----------- |
+| $t \in \text{Months}$                         | 月份集合     |
+| $V=\{\text{VEG1},\text{VEG2}\}$               | 食用油集合   |
+| $N=\{\text{OIL1},\text{OIL2},\text{OIL3}\}  $ | 非食用油集合 |
+| $o \in \text{Oils} = V \cup N$                | 油的集合     |
 
-V={VEG1,VEG2}V={VEG1,VEG2}: Set of vegetable oils.
+##### 参数
 
-N={OIL1,OIL2,OIL3}N={OIL1,OIL2,OIL3}: Set of non-vegetable oils.
+| 符号                                   | 含义                   |
+| -------------------------------------- | ---------------------- |
+| $\text{price} \in \mathbb{R}^+$        | 最终的售卖价格         |
+| $\text{init_store} \in \mathbb{R}^+$   | 初始库存               |
+| $\text{target_store} \in \mathbb{R}^+$ | 目标库存               |
+| $\text{holding_cost} \in \mathbb{R}^+$ | 每个月的维持成本       |
+| $\text{veg_cap} \in \mathbb{R}^+$      | 精炼植物油的装机容量   |
+| $\text{oil_cap} \in \mathbb{R}^+$      | 精炼非植物油的装机容量 |
+| $\text{min_hardness} \in \mathbb{R}^+$ | 最终产品允许的最低硬度 |
+| $\text{max_hardness} \in \mathbb{R}^+$ | 最终产品允许的最大硬度 |
+| $\text{hardness}_o \in \mathbb{R}^+$   | 产品的硬度             |
+| $\text{cost}_{t,o} \in \mathbb{R}^+$   | 预估的购买价格         |
 
-o∈Oils=V∪No∈Oils=V∪N: Set of oils.
+##### 定义变量
 
+| 变量                                    | 含义     |
+| --------------------------------------- | -------- |
+| $\text{produce}_t \in \mathbb{R}^+$     | 生产的量 |
+| $\text{buy}_{t,o} \in \mathbb{R}^+$     | 购买的量 |
+| $\text{consume}_{t,o} \in \mathbb{R}^+$ | 使用的量 |
+| $\text{store}_{t,o} \in \mathbb{R}^+$   | 存储的量 |
+
+##### 约束条件
+
+1.  **Initial Balance**
+   $$
+   \begin{equation}
+   \text{init_store} + \text{buy}_{Jan,o} = \text{consume}_{Jan,o} + \text{store}_{Jan,o} \quad \forall o \in \text{Oils}
+   \tag{1}
+   \end{equation}
+   $$
+   ​	
+   $$
+   \begin{equation}
+   y_{i,k} \leq z_{k} \quad \forall i \in L \setminus \{0\}, \; k \in V
+   \end{equation}
+   $$
+
+2. **Balance** 
+   $$
+   \begin{equation}
+   \text{store}_{t-1,o} + \text{buy}_{t,o} = \text{consume}_{t,o} + \text{store}_{t,o} \quad \forall (t,o) \in \text{Months} \setminus \{\text{Jan}\} \times \text{Oils}
+   \tag{2}
+   \end{equation}
+   $$
+   
+
+3.  **Inventory Target** 
+
+   $$
+   \begin{equation}
+   \text{store}_{Jun,o} = \text{target_store} \quad \forall o \in \text{Oils}
+   \tag{3}
+   \end{equation}
+   $$
+
+4.  **Refinement Capacity**
+    $$
+    \begin{equation}
+    \sum_{o \in V}\text{consume}_{t,o} \leq \text{veg_cap} \quad \forall t \in \text{Months}
+    \tag{4.1}
+    \end{equation}
+    $$
+
+    $$
+    \begin{equation}
+    \sum_{o \in N}\text{consume}_{t,o} \leq \text{oil_cap} \quad \forall t \in \text{Months}
+    \tag{4.2}
+    \end{equation}
+    $$
+
+5.  **Hardness**
+    $$
+    \begin{equation}
+    \text{min_hardness}*\text{produce}_t \leq \sum_{o \in \text{Oils}} \text{hardness}_o*\text{consume}_{t,o} \leq \text{max_hardness}*\text{produce}_t \quad \forall t \in \text{Months}
+    \tag{5}
+    \end{equation}
+    $$
+
+6.   **Mass Conservation**
+
+    $$
+    \begin{equation}
+    \sum_{o \in \text{Oils}}\text{consume}_{t,o} = \text{produce}_t \quad \forall t \in \text{Months}
+    \tag{6}
+    \end{equation}
+    $$
+    
+
+##### 目标函数
+
+$$
+\begin{equation}
+\text{Maximize} \quad Z = \sum_{t \in \text{Months}}\text{price}*\text{produce}_t - \sum_{t \in \text{Months}}\sum_{o \in \text{Oils}}(\text{cost}_{t,o}*\text{consume}_{t,o} + \text{holding_cost}*\text{store}_{t,o})
+\tag{0}
+\end{equation}
+$$
+
+**扩展约束**
+
+1. 定义0-1变量
+
+    $\text{use}_{t,o} \in \{0,1\}$: 1 if oil $o$ is used on month $t$, 0 otherwise. 
+
+2. **Consumption Range**: Oil $o$ can be consumed in month $t$ if we decide to use it in that month, and the Tons consumed should be between 20 and the refinement capacity for its type. 
+   $$
+   \begin{equation}
+   \text{min_consume}*\text{use}_{t,o} \leq \text{consume}_{t,o} \leq \text{veg_cap}*\text{use}_{t,o} \quad \forall (t,o) \in V \times \text{Months}
+   \tag{7.1}
+   \end{equation}
+   $$
+
+   $$
+   \begin{equation}
+   \text{min_consume}*\text{use}_{t,o} \leq \text{consume}_{t,o} \leq \text{oil_cap}*\text{use}_{t,o} \quad \forall (t,o) \in N \times \text{Months}
+   \tag{7.2}
+   \end{equation}
+   $$
+
+   
+
+3. **Recipe**: The maximum number of oils used in month $t$ must be three.
+   $$
+   \begin{equation}
+   \sum_{o \in \text{Oils}}\text{use}_{t,o} \leq \text{max_ingredients} \quad \forall t \in \text{Months}
+   \tag{8}
+   \end{equation}
+   $$
+   
+
+4. **If-then Constraint**: If oils VEG1 or VEG2 are used in month $t$, then OIL3 must be used in that month.
+   $$
+   \begin{equation}
+   \text{use}_{t,\text{VEG1}} \leq \text{use}_{t,\text{OIL3}} \quad \forall t \in \text{Months}
+   \tag{9.1}
+   \end{equation}
+   $$
+
+   $$
+   \begin{equation}
+   \text{use}_{t,\text{VEG2}} \leq \text{use}_{t,\text{OIL3}} \quad \forall t \in \text{Months}
+   \tag{9.2}
+   \end{equation}
+   $$
+
+   

@@ -24,6 +24,63 @@
 1. 减少冗余人力，即裁员人数最小化
 2. 最小化用人成本
 
+#### 数据
+
+##### 预计未来所需要的人数
+| <i></i> | Unskilled | Semi-skilled | Skilled |
+| --- | --- | --- | --- |
+| Current Strength | 2000 | 1500 | 1000 |
+| Year 1 | 1000 | 1400 | 1000 |
+| Year 2 | 500 | 2000 | 1500 |
+| Year 3 | 0 | 2500 | 2000 |
+
+##### 新员工的离职率
+| <i></i> | Unskilled (%)| Semi-skilled (%) | Skilled (%) |
+| --- | --- | --- | --- |
+| $< 1$ year of service | 25 | 20 | 10 |
+| $\geq 1$ year of service | 10 | 5 | 5 |
+
+##### 可招聘的最大人数限制
+
+| <i></i> | Unskilled | Semi-skilled | Skilled |
+| --- | --- | --- | --- |
+| Year 1 | 500 | 800 | 500 |
+| Year 2 | 500 | 800 | 500 |
+| Year 3 | 500 | 800 | 500 |
+
+##### 每年可转岗限制(人数(一人成本))
+| <i></i> | Unskilled | Semi-skilled | Skilled |
+| --- | --- | --- | --- |
+| Unskilled | 0 | 200(400/人) | - |
+| Semi-skilled | 0 | 0 | <=0.25*Skilled(500/人) |
+| Skilled | 0 | 0 | 0 |
+
+​    50%的降级员工有可能会离开公司；
+
+##### 开除员工成本(成本/人)
+| <i></i> | Unskilled | Semi-skilled | Skilled |
+| --- | --- | --- | --- |
+|开除成本| 200 | 500 | 500 |
+
+##### 超员额外支出成本(成本/人)
+| <i></i> | Unskilled | Semi-skilled | Skilled |
+| --- | --- | --- | --- |
+|超员成本| 1500 | 2000 | 3000 |
+
+​    总超员人数<=150人
+
+##### 短期员工的限制(成本/人/年)
+| <i></i> | Unskilled | Semi-skilled | Skilled |
+| --- | --- | --- | --- |
+|带人成本| 500 | 400 | 400 |
+
+​    每个级别可带人的数<=50;
+​    短期员工的生产力是正式员工的一半;
+
+
+
+
+
 #### 解决方案
 
 ##### 定义符号
@@ -86,7 +143,6 @@
    \text{Minimize} \quad Z = \sum_{t \in \mathcal{T}}\sum_{s \in \mathcal{S}}{\text{redundant}_{t,s}}
    $$
    
-
 2. 极小化用人成本: 转岗训练成本+短期员工成本+解雇员工成本+超员员工成本
    $$
    \text{Minimize} \quad W = \sum_{t \in\mathcal{T}}\sum_{s \in\mathcal{S}}\sum_{s' \in\mathcal{S}}{\{\text{ret_cost}_{s}*\text{retrained}_{t,s,s'}}\} + \sum_{t \in\mathcal{T}}\sum_{s \in\mathcal{S}}{\{\text{sh_cost}*\text{shorttime}_{t,s} + \text{red_cost}_s*\text{redundant}_{t,s} + \text{ove_cost}_s*\text{overmanning}_{t,s}\}}

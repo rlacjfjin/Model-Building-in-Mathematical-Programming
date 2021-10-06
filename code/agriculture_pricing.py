@@ -1,5 +1,5 @@
 from pyscipopt import Model, quicksum
-import  pandas as pd
+import pandas as pd
 from data.agricultural_pricing.data import data
 
 
