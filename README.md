@@ -1,6 +1,12 @@
 # Model-Building-in-Mathematical-Programming
 Model Building in Mathematical Programming Fifth Edition
 
+### 说明
+
+原计划用gurobi来写的，但因版权问题，无法使用gurobi，只能用开源的求解器scip；
+
+花了很长时间，现在回想一看，感觉没啥意义；
+
 ### 任务清单(25个)
 
 - [ ] Food manufacture
@@ -102,19 +108,16 @@ Model Building in Mathematical Programming Fifth Edition
     - 主要是考虑人员流失成本、转岗成本、招聘成本；
 
 11. [Economic planning](Economic planning)
-    
     - 线性规划问题
     - 根据各行业之间的相互关系，规划未来几年的各行业投入以及产出；
     - 规划时间内的模型是个动态模型，规划时间以后的是静态模型；
-- 值得参考其思路；
-    
+    - 值得参考其思路；
 12. [Decentralisation](Decentralisation)
-    
     - 公司部门迁移问题；
     - 考虑成本：1. 迁移节约成本  2. 迁移导致的沟通成本； 总成本最小
     - 双线性问题，scip可以处理
 - 觉得难点是成本的量化，但是该问题已经给出了成本量化后的结果
-    
+  
 13. Farm planning
 
 14. Market sharing
@@ -135,7 +138,7 @@ Model Building in Mathematical Programming Fifth Edition
     - 整数规划模型；
     - 扩展：添加水力发电厂，不同的约束；
 
-18. Refinery optimisation
+18. Refinery optimization----暂时不做，跟工作没什么关系
 
 19. Protein folding-----暂时不做
 
@@ -165,5 +168,4 @@ Model Building in Mathematical Programming Fifth Edition
 10. [std_pooling](file:///D:/modeling-examples-master/pooling/std_pooling.html)
 11. [portfolio_selection_optimization](file:///D:/modeling-examples-master/portfolio_selection_optimization/portfolio_selection_optimization.html)
 12. [technician_routing_scheduling](file:///D:/modeling-examples-master/technician_routing_scheduling/technician_routing_scheduling.html)
-13. [tsp](file:///D:/modeling-examples-master/traveling_salesman/tsp.html)---已完成部分，参考画图模块
 14. [workforce_scheduling](file:///D:/modeling-examples-master/workforce/workforce_scheduling.html)
